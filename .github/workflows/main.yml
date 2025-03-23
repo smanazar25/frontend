@@ -1,0 +1,16 @@
+name: Frontend Deployment Triggered by Backend
+on:
+  repository_dispatch:
+    type:  [deploy-frontend] 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps: 
+       - name: Checkout frontend code
+         uses: actions/checkout@v4
+
+       - name: Build frontend
+         run: npm install && npm run build
+
+       - name: Deploy frontend
+         run: echo "Deploying frontend triggered by backend"
